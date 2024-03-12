@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 javascript e jQuery</title>
+</head>
+<body>
+    <form method="POST" action="salvar.php" onsubmit="return validaform()">
+        Valores de um a dez:<input type="text" name="txtNumero" id="txtNumero" />
+        <input type="submit" value="Enviar" />
+        <p id="info"></p>
+    </form><br>
+    <br>
+
+    digite o primeiro numero:<input type="int" name="txtNumero" id="txtNumero1" />
+    digite o segundo numero:<input type="int" name="txtNumero" id="txtNumero2" />
+    <button onclick="calcular()">calcular</button>
+    <p id="calcular">resultado</p>
+    
+    <script src="script.js" type="application/javascript"></script>
+</body>
+</html>
