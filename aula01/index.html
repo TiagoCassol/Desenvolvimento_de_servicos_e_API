@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Nomes</title>
+</head>
+<body>
+    <h1>Lista de Nomes</h1>
+    <input type="text" id="nomeInput">
+    <button onclick="adicionarNome()">Confirmar</button>
+    <ul id="listaNomes">
+    </ul>
+
+    <script >
+        function adicionarNome() {
+    var nomeInput = document.getElementById("nomeInput");
+    var nome = nomeInput.value;
+
+    if (nome !== "") {
+        var listaNomes = document.getElementById("listaNomes");
+        var novoItem = document.createElement("li");
+        novoItem.textContent = nome;
+        listaNomes.appendChild(novoItem);
+        nomeInput.value = "";
+    } else {
+        alert("Por favor, insira um nome válido.");
+    }
+}
+    </script>
+</body>
+</html>
