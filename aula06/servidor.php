@@ -1,13 +1,25 @@
  <?php
 
-    header("Content-type: aplication/json");
+    header("Content-type: aplication/xml; charset='utf-8' ");
+
+    $xml = '<?XML version="1.0" encoding="UTF-8" ?>';
 
     if( isset( $_REQUEST["buscar"]) ){
         try{
             $conn = mysqli_connect("localhost", "root", "", "lojaa");
             if( $conn ){
                 $result = mysqli_query($conn, "SELECT * FROM produto");
+               
+                $xml .="<lista_produtos>";
+
+                while($prod = mysqli_fetch_array ($result)){
+                    $xml .= "<produto>"
+                    $xml .= '   <id>'.$prod["nome"].'</id>';
+                }
+                $xml .= "</lista_produtos"
+
                 $linhas = array();
+
                 while( $row = mysqli_fetch_assoc($result) ){
                     $linhas[] = $row;
                 }

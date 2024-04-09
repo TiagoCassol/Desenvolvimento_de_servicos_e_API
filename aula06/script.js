@@ -2,24 +2,21 @@ function lerDados(){
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if( this.readyState == 4 && this.status == 200){
-            dados = JSON.parse( this.responseText );
+            dados = this.responseXML
             //console.log( dados );
+            pessoa = dados.getElementsByTagName("pessoa");
+            nome = pessoa[0].getElementsByTagName("nome");
+            nomePessoa = nome[0].childNodes[0].value;
+            idade = pessoa[0].getElementsByTagName("idade");
+            idadePessoa = idade[0].childNodes[0].nodeValue;
 
             texto = "<b>Nome: </b>" + dados.nome +"<br>";
             texto += "<b>Idade: </b>" + dados.idade +"<br>";
-            texto += "<b>Anos de Formação: </b>" + dados.anoFormacoes +"<br>";
-            texto += "<b>Titulações: </b><br>";
-            dados.graus.forEach( titulo => {
-                texto += titulo + "<br>";
-            } );
-            texto += "<b>Filhos: </b><br>";
-            dados.filhos.forEach( filho => {
-                texto += filho.nome + " - " + filho.idade + " anos <br>";
-            } );
+
             document.getElementById("divDados").innerHTML = texto;
         }
     };
-    xhttp.open("GET" , "meuJson.json" , true);
+    xhttp.open("GET" , "dados.xml" , true);
     xhttp.send()
 
 }
