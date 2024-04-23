@@ -28,6 +28,13 @@ app.post('/produto/', (req, res) => {
     produtos.push(nome)
     res.send("Produto "+ nome +" adicionado")
   })
+
+  app.put('/produto/:idProd', (req, res) => {
+    index = parseInt(req.params.idProd) -1
+    nome = "Prod_"+produtos.length
+    produtos[index] = "Novo nome "+ produtos[index]
+    res.send("produto alterado")
+  })
   
 app.listen(port, () => {
   console.log(`Servidor iniciado em http://localhost:${port}`)
