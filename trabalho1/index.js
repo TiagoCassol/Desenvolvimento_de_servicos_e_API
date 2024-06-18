@@ -48,12 +48,12 @@ app.get('/', (req, res) => {
 });
 
 // Configuração das rotas
-categoriaRoutes(app, knex); // Não é necessário passar errors
-produtoRoutes(app, knex);   // Não é necessário passar errors
-cidadeRoutes(app, knex);    // Não é necessário passar errors
-clienteRoutes(app, knex);   // Não é necessário passar errors
-pedidoRoutes(app, knex);    // Não é necessário passar errors
-pedidoProdutoRoutes(app, knex); // Não é necessário passar errors
+categoriaRoutes(app, knex); 
+produtoRoutes(app, knex);   
+cidadeRoutes(app, knex);    
+clienteRoutes(app, knex);   
+pedidoRoutes(app, knex);    
+pedidoProdutoRoutes(app, knex); 
 
 // Tratamento de erros
 app.use((err, req, res, next) => {
