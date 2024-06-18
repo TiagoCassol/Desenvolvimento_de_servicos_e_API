@@ -76,6 +76,15 @@ module.exports = (app, knex) => {
             .catch(err => res.status(500).json({ message: err.message }));
     });
 
+    //    // Lista todos os produtos
+    // app.get('/produtos', (req, res) => {
+    // knex('produtos')
+    //         .join('categorias', 'produtos.categoria_id', 'categorias.id')
+    //         .select('produtos.*', 'categorias.nome as categoria_nome')
+    //         .then(dados => res.json(dados))
+    //         .catch(err => res.status(500).json({ message: err.message }));
+    // });
+
     // Adiciona um novo produto
     app.post('/produtos', (req, res) => {
         knex('produtos')

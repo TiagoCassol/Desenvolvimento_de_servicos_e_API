@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula11 - Integração</title>
 </head>
-<body>
+<body onload="buscarProdutos()">
     <h1>Adicionar Produto</h1>
     <form id="productForm">
         <label for="txtNome">Nome:</label>
@@ -24,7 +24,21 @@
         <button type="button" onclick="adicionar()">Adicionar Produto</button>
     </form>
     <div id="productList"></div>
-
+    <table id="tblProdutos" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Categoria</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 
         <script src="Script.js"></script>
 </body>
