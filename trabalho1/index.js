@@ -1,3 +1,8 @@
+const express = require('express');
+const app = express();
+const port = 8002;
+
+// Configuração do Knex.js para MySQL
 const knex = require("knex")({
     client: 'mysql',
     connection: {
@@ -8,49 +13,55 @@ const knex = require("knex")({
     }
 });
 
-const produtoRoutes = require('./Produto');
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
+
+
+// Importação das rotas
 const categoriaRoutes = require('./Categoria');
+const produtoRoutes = require('./Produto');
 const cidadeRoutes = require('./Cidade');
 const clienteRoutes = require('./Cliente');
 const pedidoRoutes = require('./Pedido');
 const pedidoProdutoRoutes = require('./PedidoProduto');
 
-const restify = require("restify");
-const errors = require("restify-errors");
-const fs = require('fs');
+// Middleware necessário
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-const server = restify.createServer({
-    name: 'lojapi',
-    version: '1.0.0'
-});
+// Configuração de middlewares
+app.use(cors()); // Habilita CORS para todas as rotas
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-server.use(restify.plugins.acceptParser(server.acceptable));
-server.use(restify.plugins.queryParser());
-server.use(restify.plugins.bodyParser());
-
-server.listen(8001, function() {
-    console.log("%s executando em %s", server.name, server.url);
-});
-
-server.get('/', (req, res, next) => {
+// Rota de boas-vindas
+app.get('/', (req, res) => {
     res.send("Bem-vindo(a) à lojAPI");
 });
 
-categoriaRoutes(server, knex, errors);
+// Configuração das rotas
+categoriaRoutes(app, knex); // Não é necessário passar errors
+produtoRoutes(app, knex);   // Não é necessário passar errors
+cidadeRoutes(app, knex);    // Não é necessário passar errors
+clienteRoutes(app, knex);   // Não é necessário passar errors
+pedidoRoutes(app, knex);    // Não é necessário passar errors
+pedidoProdutoRoutes(app, knex); // Não é necessário passar errors
 
-produtoRoutes(server, knex, errors);
+// Tratamento de erros
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Erro interno no servidor!');
+});
 
-cidadeRoutes(server, knex, errors);
-
-clienteRoutes(server, knex, errors);
-
-pedidoRoutes(server, knex, errors);
-
-pedidoProdutoRoutes(server, knex, errors);
-
-
-
-
-
-
-
+// Inicia o servidor
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
+});

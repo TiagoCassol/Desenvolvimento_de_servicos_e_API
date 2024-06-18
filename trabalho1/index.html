@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula11 - Integração</title>
+</head>
+<body>
+    <h1>Adicionar Produto</h1>
+    <form id="productForm">
+        <label for="txtNome">Nome:</label>
+        <input type="text" id="txtNome"><br>
+        <label for="txtPreco">Preço:</label>
+        <input type="text" id="txtPreco"><br>
+        <label for="txtQuantidade">Quantidade:</label>
+        <input type="text" id="txtQuantidade"><br>
+        <label for="categoria">Categoria:</label>
+        <select id="categoria">
+            <option value="">Selecione uma categoria</option>
+            <option value="1">Refri</option>
+            <option value="2">Salgado</option>
+        </select><br>
+        <button type="button" onclick="adicionar()">Adicionar Produto</button>
+    </form>
+    <div id="productList"></div>
+
+
+        <script src="Script.js"></script>
+</body>
+</html>
