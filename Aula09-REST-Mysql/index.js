@@ -19,7 +19,7 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
-server.listen(801, function() {
+server.listen(8001, function() {
     console.log("%s executando em %s", server.name, server.url);
 });
 
